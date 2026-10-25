@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <BloonsTD6 Condition="'$(BloonsTD6)' == ''">C:\Program Files (x86)\Steam\steamapps\common\BloonsTD6</BloonsTD6>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="$(BloonsTD6)\MelonLoader\net6\*.dll" Private="false" />
+    <Reference Include="$(BloonsTD6)\MelonLoader\Il2CppAssemblies\*.dll" Private="false" />
+    <Reference Include="$(BloonsTD6)\Mods\Btd6ModHelper.dll" Private="false" />
+  </ItemGroup>
+  <!-- Copy the built mod into the game's Mods folder. -->
+  <Target Name="InstallMod" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BloonsTD6)\Mods" />
+  </Target>
+</Project>
